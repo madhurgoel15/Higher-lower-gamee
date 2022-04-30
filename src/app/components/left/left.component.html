@@ -1,0 +1,19 @@
+<head>
+  <link rel="stylesheet" href="left.component.css">
+</head>
+
+<div class="row" >
+  <div class="col">
+    <div class="card__content1" >
+      <h1 class="card__header">{{cont.name}}</h1>
+      <p class="card__info">has {{cont.population}} residents</p>
+    </div>
+   </div>
+  <div class="col">
+    <app-right (newItemEvent)="receiveMessage($event)" ></app-right>
+  </div>
+</div>
+
+
+<!---<div class="card__content" style="background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url({{cont.flag}}), fixed, no-repeat; background-position:center center; background-size: cover;">
+    -->

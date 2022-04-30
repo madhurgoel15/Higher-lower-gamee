@@ -1,0 +1,72 @@
+<head >
+  <link rel="stylesheet" href="app.component.css">
+</head>
+
+<body>
+  <div class="toolbar">
+    <div class="heading">
+      The Higher Lower Game
+    </div>
+    <div class="score" *ngIf="vis == 'B' ">
+      Current Score : {{pas.score}}
+    </div>
+  </div>
+
+  <div class="pp" *ngIf="vis == 'A' ">
+
+    <form ngNativeValidate (ngSubmit)="play()">
+      <input type="text" name="name" id="name" placeholder="Enter name to play" required [(ngModel)]="pas.name" >
+      <br><br>
+      <button class="button button3"  >Play</button>
+    </form>
+
+    <div *ngIf="scores.length!=0">
+      <p style="color: #066fcb; font-size: 50px;">Leaderboard</p>
+      <div class="table">
+
+        <div class="row header blue">
+          <div class="cell">
+            Name
+          </div>
+          <div class="cell">
+            Score
+          </div>
+          <div class="cell">
+            Rank
+          </div>
+        </div>
+
+
+        <div class="row" *ngFor="let score of scores; index as i;">
+          <div class="cell" data-title="Name">
+            {{score.name}}
+          </div>
+          <div class="cell" data-title="Score">
+            {{score.score}}
+          </div>
+          <div class="cell" data-title="Rank">
+            {{i+1}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="module" *ngIf="vis == 'B'">
+  <app-left (statuss)="status($event)"></app-left>
+</div>
+
+<div class="pp2" *ngIf="vis == 'C'">
+  <p>Oops... wrong answer</p>
+  <p>Game Over</p>
+  <p>Your score is {{pas.score}}</p>
+  <button class="button button3" (click)="back()" >Back to Home Page</button>
+</div>
+<div class="pp2" *ngIf="vis == 'D'">
+  <p>Congratulations...</p>
+  <p>You have correctly guessed the population of all countries in the world</p>
+  <p>Your score is {{pas.score}}</p>
+  <button class="button button3" (click)="back()" >Back to Home Page</button>
+</div>
+<router-outlet></router-outlet>
+</body>
